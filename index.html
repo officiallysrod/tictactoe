@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+
+<html ng-app="TttApp">
+    <head>
+        <title>ttt #ftw!</title>
+        <link rel="icon" type="image/png" href="favicon.png">
+        <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,600,800' rel='stylesheet' type='text/css'>
+        <link rel="stylesheet" type="text/css" href="css/normalize.css">
+        <link rel="stylesheet" type="text/css" href="css/main.css">
+        <script type="text/javascript" src="js/angular.min.js"></script>
+        <script type="text/javascript" src="js/main.js"></script>
+    </head>
+    <body ng-controller="TTTController">
+        <div class="wrapper">
+            <header class="mainhead">
+                <h1>TTT</h1>
+                <h2 id="subhead">#ftw!</h2>
+            </header>
+            <h3 ng-model="test">{{test}}</h3>
+            <div class="boardsquare">
+            </div>
+        </div>
+        
+    </body>
+</html>
