@@ -16,8 +16,10 @@
                 <h1>TTT</h1>
                 <h2 id="subhead">#ftw!</h2>
             </header>
-            <h3 ng-model="test">{{test}}</h3>
-            <div class="boardsquare">
+            <div class="board">
+                <div class="row" ng-repeat="row in board">
+                    <div class="cell" id="{{cell.cell}}" ng-repeat="cell in row"></div>
+                </div>
             </div>
         </div>
         
