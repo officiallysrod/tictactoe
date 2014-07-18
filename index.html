@@ -18,7 +18,11 @@
             </header>
             <div class="board">
                 <div class="row" ng-repeat="row in board">
-                    <div class="cell" id="{{cell.cell}}" ng-repeat="cell in row"></div>
+                    <div class="cell" id="{{cell.cell}}" 
+                        ng-repeat="cell in row" 
+                        ng-click="setChoice(cell)"
+                        ng-class="{xselected: cell.owner == 'x'}">
+                    </div>
                 </div>
             </div>
         </div>

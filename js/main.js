@@ -24,4 +24,8 @@ tttApp.controller('TTTController', function ($scope) {
     ]
   ]
   
+  $scope.setChoice = function(cell) {
+    cell.owner = "x";
+}
+
 });
