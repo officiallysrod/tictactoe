@@ -44,7 +44,7 @@ h1, h2, h3, h4, h5, h6 {
     background-color: #FF4C4C;
 }
 
-.cell h1 {
+.cell p {
     font-family: "Open Sans", sans-serif;
     color: white;
     text-align: left;

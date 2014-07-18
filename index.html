@@ -18,12 +18,11 @@
             </header>
             <h3>It's player {{turn}}'s turn!</h3>
             <div class="board">
-                <div class="row" ng-repeat="row in board">
+                <div class="row" ng-repeat="cell in board">
                     <div class="cell" id="{{cell.cell}}" 
-                        ng-repeat="cell in row" 
                         ng-click="setChoice(cell)"
                         ng-class="{hover: cell.owner == ''}">
-                        <h1 ng-class="{xselected: cell.owner == 'X', oselected: cell.owner == 'O'}">{{cell.owner}}</h1>
+                        <p ng-class="{xselected: cell.owner == 'X', oselected: cell.owner == 'O'}">{{cell.owner}}</p>
                     </div>
                 </div>
             </div>
