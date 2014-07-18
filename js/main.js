@@ -2,8 +2,6 @@ var tttApp = angular.module('TttApp', []);
 
 tttApp.controller('TTTController', function ($scope) {
   
-  $scope.test = "This is a test!";
-
   $scope.board = [
     [  
       {cell: "aa", owner: ""},
@@ -23,9 +21,29 @@ tttApp.controller('TTTController', function ($scope) {
       {cell: "cc", owner: ""}
     ]
   ]
-  
+
+  $scope.turn = 1;
+
   $scope.setChoice = function(cell) {
-    cell.owner = "x";
-}
+    if(cell.owner == ""){
+      if($scope.turn == 1) {
+        cell.owner = "X";
+        $scope.turn = 2;
+      }
+      else {
+        cell.owner = "O";
+        $scope.turn = 1;
+      }
+    }
+  }
+
+  $scope.setClass = function(cell) {
+    if(cell.owner == "x") {
+      return "xselected";
+    }
+    else {
+      return "oselected";
+    }
+  }
 
 });

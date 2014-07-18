@@ -28,6 +28,7 @@ h1, h2, h3, h4, h5, h6 {
 .board {
     width: 474px;
     margin: 15px auto;
+    cursor: pointer;
 }
 
 .cell {
@@ -39,10 +40,22 @@ h1, h2, h3, h4, h5, h6 {
     float: left;
 }
 
+.hover:hover {
+    background-color: #FF4C4C;
+}
+
+.cell h1 {
+    font-family: "Open Sans", sans-serif;
+    color: white;
+    text-align: left;
+    font-size: 225px;
+    font-weight: 800;
+}
+
 .xselected {
-    background-color: blue;
+    margin: -83px auto 0 -6px;
 }
 
 .oselected {
-    background-color: yellow;
+    margin: -83px auto 0 -15px;
 }
