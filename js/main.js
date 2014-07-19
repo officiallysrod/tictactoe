@@ -4,59 +4,42 @@ var tttApp = angular.module('TttApp', []);
   
   $scope.board = []
 
-  // $scope.oldboard = [
-  //   [  
-  //     {cell: "aa", owner: "", pointValue: ""},
-  //     {cell: "ab", owner: "", pointValue: ""},
-  //     {cell: "ac", owner: "", pointValue: ""}
-  //   ],
-    
-  //   [  
-  //     {cell: "ba", owner: "", pointValue: ""},
-  //     {cell: "bb", owner: "", pointValue: ""},
-  //     {cell: "bc", owner: "", pointValue: ""}
-  //   ],
-    
-  //   [  
-  //     {cell: "ca", owner: "", pointValue: ""},
-  //     {cell: "cb", owner: "", pointValue: ""},
-  //     {cell: "cc", owner: "", pointValue: ""}
-  //   ]
-  // ]
-
   $scope.createSquares = function(numWidth) {
+    var j = 1;
     for(i = 0; i < numWidth * numWidth; i++){
-      $scope.board.push({owner: "", pointValue: ""});
+      $scope.board.push({owner: "", pointValue: j});
+      j = j * 2;
     }
   }
 
   $scope.turn = 1;
 
+  $scope.xScore = 0;
+  $scope.yScore = 0;
+
   $scope.setChoice = function(cell) {
     if(cell.owner == ""){
       if($scope.turn == 1) {
         cell.owner = "X";
-        cell.pointValue = 1;
+        $scope.xScore = $scope.xScore + cell.pointValue;
+        console.log(cell.pointValue);
         $scope.turn = 2;
       }
       else {
         cell.owner = "O";
-        cell.pointValue = -1;
+        $scope.yScore = $scope.yScore + cell.pointValue;
+        console.log(cell.pointValue);
         $scope.turn = 1;
       }
     }
     $scope.winChecker();
   }
 
-//win checker variables
-  // $scope.row1 = $scope.board[0][0].pointValue + $scope.board[0][1].pointValue + $scope.board[0][2].pointValue;
-  // $scope.row2 = $scope.board[1][0].pointValue + $scope.board[1][1].pointValue + $scope.board[1][2].pointValue;
-  // $scope.row3 = $scope.board[2][0].pointValue + $scope.board[2][1].pointValue + $scope.board[2][2].pointValue;
-  // $scope.column1 = $scope.board[0][0].pointValue + $scope.board[1][0].pointValue + $scope.board[2][0].pointValue;
-  // $scope.column2 = $scope.board[0][1].pointValue + $scope.board[1][1].pointValue + $scope.board[2][1].pointValue;
-  // $scope.column3 = $scope.board[0][2].pointValue + $scope.board[1][2].pointValue + $scope.board[2][2].pointValue;
-  // $scope.diag1 = $scope.board[0][0].pointValue + $scope.board[1][1].pointValue + $scope.board[2][2].pointValue;
-  // $scope.diag1 = $scope.board[0][2].pointValue + $scope.board[1][1].pointValue + $scope.board[2][0].pointValue;
+  $scope.winChecker = function(){
+    if($scope.xScore == 7){
+      alert("X wins!");
+    }
+  }
 
   // $scope.winChecker = function(){
   //   if($scope.row1 == 3){
@@ -64,11 +47,6 @@ var tttApp = angular.module('TttApp', []);
   //   }
   // }
 
-  // $scope.winChecker = function() {
-  //   if($scope.board[0][0].pointValue + $scope.board[0][1].pointValue + $scope.board[0][2].pointValue == 3){
-  //     alert("X wins!");
-  //   }
-  // }
   var init = function(){
     $scope.createSquares(3);
   };
