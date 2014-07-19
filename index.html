@@ -26,6 +26,15 @@
                     </div>
                 </div>
             </div>
+            <div class="scoreboard">
+                <h3>Score Board</h3>
+                <p>X's Score: {{scoreBoard.xWins}}</p>
+                <p>O's Score: {{scoreBoard.oWins}}</p>
+                <p>Ties:  {{scoreBoard.ties}}</p>
+            </div>
+            <div class="play again">
+                <button ng-click="playAgain()">Play Again</button>
+            </div>
         </div>        
     </body>
 </html>
