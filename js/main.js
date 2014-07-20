@@ -6,7 +6,7 @@ var tttApp = angular.module('TttApp', []);
 
   $scope.createSquares = function(numWidth) {
     for(i = 0; i < numWidth * numWidth; i++){
-      $scope.board.push({owner: "", pointValue: 0});
+      $scope.board.push({owner: "", checker: Math.random(), pointValue: 0});
     }
   }
 
@@ -14,32 +14,50 @@ var tttApp = angular.module('TttApp', []);
   $scope.turn = 1;
   $scope.gameOver = false;
   $scope.playCounter = 0;
-  $scope.playerOne = "Player One";
-  $scope.playerTwo = "Player Two";
 
   $scope.setChoice = function(cell) {
     if($scope.gameOver === false){
       if(cell.owner === ""){
         if($scope.turn === 1){
           cell.owner = "X";
+          cell.checker = "X";
           cell.pointValue = cell.pointValue + 1;
           $scope.playCounter = $scope.playCounter + 1;
           $scope.turn = 2;
         }
         else {
           cell.owner = "O";
+          cell.checker = "O";
           cell.pointValue = cell.pointValue - 1;
           $scope.playCounter = $scope.playCounter + 1;
           $scope.turn = 1;
         }
       }
-      $scope.winChecker();
+      // $scope.winChecker();
+      $scope.rowChecker();
     }
     else {
       $scope.playAgain();
     }
   }
 
+  $scope.rowChecker = function() {
+    var width = Math.sqrt($scope.board.length);
+    for(i = 0; i <= (width - 1) * width; i+=width){
+      if($scope.board[i].checker === $scope.board[i + 1].checker && $scope.board[i].checker === $scope.board[i + 2].checker){
+        $scope.board[i].checker === "X" ? $scope.scoreBoard.xWins++ : $scope.scoreBoard.oWins++;
+        $scope.gameOver = true;
+      }
+    }
+  }
+
+  // $scope.columnChecker = function() {
+  //   var width = Math.sqrt($scope.board.length);
+  //   for(i = 0; i <= width; i++)
+  // }
+  
+
+  //refactor this to create a more scalable solution with less repetition
   $scope.winChecker = function(){
     if($scope.board[0].pointValue + $scope.board[1].pointValue + $scope.board[2].pointValue === 3){
       $scope.scoreBoard.xWins = $scope.scoreBoard.xWins + 1;
