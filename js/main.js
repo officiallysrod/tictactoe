@@ -39,12 +39,14 @@ var tttApp = angular.module('TttApp', []);
   }
 
   $scope.winChecker = function() {
-    $scope.rowChecker();
-    $scope.columnChecker();
-    $scope.diagChecker();
-    if($scope.playCounter === 9 && $scope.gameOver === false){
-      $scope.scoreBoard.ties++;
-      $scope.gameOver = true;
+    if($scope.playCounter >= 5){
+      $scope.rowChecker();
+      $scope.columnChecker();
+      $scope.diagChecker();
+      if($scope.playCounter === 9 && $scope.gameOver === false){
+        $scope.scoreBoard.ties++;
+        $scope.gameOver = true;
+      }
     }
   }
 
