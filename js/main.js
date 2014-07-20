@@ -33,16 +33,21 @@ var tttApp = angular.module('TttApp', []);
           $scope.turn = 1;
         }
       }
-      $scope.winChecker2();
+      $scope.winChecker();
     }
     else {
       $scope.playAgain();
     }
   }
 
-  $scope.winChecker2 = function() {
+  $scope.winChecker = function() {
     $scope.rowChecker();
     $scope.columnChecker();
+    $scope.diagChecker();
+    if($scope.playCounter === 9 && $scope.gameOver === false){
+      $scope.scoreBoard.ties++;
+      $scope.gameOver = true;
+    }
   }
 
   $scope.rowChecker = function() {
@@ -64,9 +69,20 @@ var tttApp = angular.module('TttApp', []);
       }
     }
   }
-  
 
-  //refactor this to create a more scalable solution with less repetition
+  $scope.diagChecker = function() {
+    var width = Math.sqrt($scope.board.length);
+    if($scope.board[0].checker === $scope.board[width + 1].checker && $scope.board[0].checker === $scope.board[(width + 1) * 2].checker){
+      $scope.board[0].checker === "X" ? $scope.scoreBoard.xWins++ : $scope.scoreBoard.oWins++;
+      $scope.gameOver = true;
+    }
+    else if($scope.board[width -1].checker === $scope.board[(width * 2) - 2].checker && $scope.board[width - 1].checker === $scope.board[(width * 3) - 3].checker){
+      $scope.board[width - 1].checker === "X" ? $scope.scoreBoard.xWins++ : $scope.scoreBoard.oWins++;
+      $scope.gameOver = true;
+    }    
+  }
+
+   //refactor this to create a more scalable solution with less repetition
   // $scope.winChecker = function(){
   //   if($scope.board[0].pointValue + $scope.board[1].pointValue + $scope.board[2].pointValue === 3){
   //     $scope.scoreBoard.xWins = $scope.scoreBoard.xWins + 1;
