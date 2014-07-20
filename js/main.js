@@ -14,6 +14,8 @@ var tttApp = angular.module('TttApp', []);
   $scope.turn = 1;
   $scope.gameOver = false;
   $scope.playCounter = 0;
+  $scope.playerOne = null;
+  $scope.playerTwo = null;
 
   $scope.setChoice = function(cell) {
     if($scope.gameOver === false){
@@ -88,6 +90,14 @@ var tttApp = angular.module('TttApp', []);
     $scope.gameOver = false;
     $scope.turn = 1;
     $scope.playCounter = 0;
+  }
+
+  $scope.defaultNameOne = function(){
+    if($scope.playerOne === null){return "Player 1";}
+  }
+
+  $scope.defaultNameTwo = function(){
+    if($scope.playerTwo === null){return "Player 2";}
   }
 
   var init = function(){
