@@ -10,6 +10,7 @@ var tttApp = angular.module('TttApp', []);
     }
   }
 
+  $scope.showModal = true;
   $scope.scoreBoard = {xWins: 0, oWins: 0, ties: 0};
   $scope.turn = 1;
   $scope.gameOver = false;
@@ -98,6 +99,10 @@ var tttApp = angular.module('TttApp', []);
 
   $scope.defaultNameTwo = function(){
     if($scope.playerTwo === null){return "Player 2";}
+  }
+
+  $scope.hideModal = function(){
+    $scope.showModal = false;
   }
 
   var init = function(){

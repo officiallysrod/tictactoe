@@ -11,27 +11,22 @@
         <script type="text/javascript" src="js/main.js"></script>
     </head>
     <body ng-controller="TTTController">
-        <div class="wrapper">
+        <div id="openModal" class="modalDialog" ng-class="{visible: showModal}">
+            <div>
+                <h2>Welcome to ttt | #ftw!</h2>
+                <p>Hi there! I didn't catch your names. Would you mind telling me?</p>
+                <form>
+                    <p>Player 1: <input class="inputname" type="text" placeholder="player one" ng-model="playerOne"></p>
+                    <p>Player 2: <input class="inputname" type="text" placeholder="player two" ng-model="playerTwo"></p>
+                    <input class="close" type="submit" value="Let's get started!" ng-click="hideModal()">
+                </form>
+            </div>    
+        </div>
+        <div class="wrapper" ng-class="{shrink: showModal}">
             <header class="mainhead">
                 <h1>ttt | #ftw!</h1>
             </header>
-           
-            <a href="#openModal">Open Modal</a>
-            <div id="openModal" class="modalDialog">
-                <div>
-                    <h2>Welcome to ttt | #ftw!</h2>
-                    <p>Before we get started, why don't you tell us your names.</p>
-                    <form>
-                        <p>Player 1: <input type="text" placeholder="player one" ng-model="playerOne" required></p>
-                        <p>Player 2: <input type="text" placeholder="player two" ng-model="playerTwo" required></p>
-                        <a href="#close" title="Close" class="close"><input type="submit" value="Let's get started!"></a>
-                        <a href="#close" title="Close" class="close">Let's Get Started!</a>
-                    </form>
-                </div>    
-            </div>
-            
             <div class="board">
-                <div class="test"></div>
                 <div class="row" ng-repeat="cell in board">
                     <div class="cell" 
                         ng-click="setChoice(cell)"
@@ -39,22 +34,21 @@
                         <p ng-class="{xselected: cell.owner == 'X', oselected: cell.owner == 'O'}">{{cell.owner}}</p>
                     </div>
                 </div>
-            </div>
-            
-            <div class="gameinfo">
-                <div class="score">
-                    <h3>{{defaultNameOne()}}{{playerOne}}</h3>
-                    <h3>{{scoreBoard.xWins}}</h3>
-                </div>
-                <div class="score">
-                    <h3>Ties</h3>
-                    <h3>{{scoreBoard.ties}}</h3>
-                </div>
-                <div class="score">
-                    <h3>{{defaultNameTwo()}}{{playerTwo}}</h3>
-                    <h3>{{scoreBoard.oWins}}</h3>
-                </div>
             </div> 
-       </div>    
+            <div class="gameinfo">
+                <div class="scorebox">
+                    <h3 class="names">{{defaultNameOne()}}{{playerOne}}</h3>
+                    <h3 id="score1">{{scoreBoard.xWins}}</h3>
+                </div>
+                <div class="scorebox">
+                    <h3 class="names">Ties</h3>
+                    <h3 id="score2">{{scoreBoard.ties}}</h3>
+                </div>
+                <div class="scorebox">
+                    <h3 class="names">{{defaultNameTwo()}}{{playerTwo}}</h3>
+                    <h3 id="score3">{{scoreBoard.oWins}}</h3>
+                </div>
+            </div>
+       </div>
     </body>
 </html>
