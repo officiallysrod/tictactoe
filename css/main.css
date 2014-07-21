@@ -69,11 +69,12 @@ Modal Dialog Box
 }
 
 .shrink {
-    -webkit-filter: blur(3px) grayscale(75%);
+/*    -webkit-filter: blur(3px) grayscale(75%);
     -moz-filter: blur(3px) grayscale(50%);
-    -webkit-transform: scale(0.1);
-    -moz-transform: scale(0.1);
-    transform: scale(0.1);
+    -webkit-transform: scale(0);
+    -moz-transform: scale(0);
+    transform: scale(0);*/
+    opacity: 0;
 }
 
 /*================================================
@@ -95,7 +96,9 @@ h1, h2, h3, h4, h5, h6 {
     max-width: 1920px;
     height: 100%;
     margin: 0 auto;
-    transition: all 0.6s ease-in;
+    -webkit-transition: opacity 600ms ease-in;
+    -moz-transition: opacity 600ms ease-in;
+    transition: opacity 600ms ease-in;
 }
 
 /*================================================
