@@ -30,7 +30,7 @@
                 <div class="row" data-ng-repeat="cell in board">
                     <div class="cell" 
                         data-ng-click="setChoice(cell)"
-                        data-ng-class="{hover: cell.owner == ''}">
+                        data-ng-class="{hover: cell.owner == '', winbackground: cell.winner}">
                         <p data-ng-class="{cellfont: !cell.winner, winner: cell.winner, xselected: cell.owner == 'X', oselected: cell.owner == 'O'}">{{cell.owner}}</p>
                     </div>
                 </div>

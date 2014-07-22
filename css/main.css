@@ -147,6 +147,11 @@ Game Board
     transition: background-color 0.4s ease;
 }
 
+.winbackground {
+    background-color: #3A7282;
+    box-shadow: 7px 7px 15px 0px rgba(56,56,56,0.75);
+}
+
 .hover:hover {
     background-color: #3A7282;
 }
@@ -167,7 +172,7 @@ Game Board
 }
 
 .winner {
-    color: #D60000;
+    color: white;
     text-align: left;
     font-size: 152px;
     font-weight: 400;
