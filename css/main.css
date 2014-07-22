@@ -82,8 +82,8 @@ General Styles
 ================================================*/
 
 body {
-    background-image: url("../images/fabric_of_squares_gray_@2X.png");
-    /*background-image: url("../images/congruent_pentagon.png");*/
+/*    background-image: url("../images/fabric_of_squares_gray_@2X.png");
+*/    /*background-image: url("../images/congruent_pentagon.png");*/
     font-family: "Open Sans", sans-serif;
 }
 
@@ -149,7 +149,10 @@ Game Board
 
 .winbackground {
     background-color: #3A7282;
-    box-shadow: 7px 7px 15px 0px rgba(56,56,56,0.75);
+/*    box-shadow: 7px 7px 15px 0px rgba(56,56,56,0.75);*/
+    border: 1px solid white;
+    width: 123px;
+    height: 123px;
 }
 
 .hover:hover {

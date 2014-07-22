@@ -17,9 +17,11 @@ var tttApp = angular.module('TttApp', []);
   $scope.playCounter = 0;
   $scope.playerOne = null;
   $scope.playerTwo = null;
+  var sfx = new Audio('pop.mp3');
 
   $scope.setChoice = function(cell) {
     if($scope.gameOver === false){
+      sfx.play();
       if(cell.owner === ""){
         if($scope.turn === 1){
           cell.owner = "X";
