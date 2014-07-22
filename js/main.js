@@ -4,7 +4,7 @@ var tttApp = angular.module('TttApp', []);
   
   $scope.board = []
 
-  $scope.createSquares = function(numWidth) {
+  var createSquares = function(numWidth) {
     for(i = 0; i < numWidth * numWidth; i++){
       $scope.board.push({owner: "", checker: new Date(), winner: null});
     }
@@ -13,49 +13,49 @@ var tttApp = angular.module('TttApp', []);
   $scope.showModal = true;
   $scope.scoreBoard = {xWins: 0, oWins: 0, ties: 0};
   $scope.turn = 1;
-  $scope.gameOver = false;
-  $scope.playCounter = 0;
   $scope.playerOne = null;
   $scope.playerTwo = null;
+  var gameOver = false;
+  var playCounter = 0;
   var sfx = new Audio('pop.mp3');
 
   $scope.setChoice = function(cell) {
-    if($scope.gameOver === false){
+    if(gameOver === false){
       sfx.play();
       if(cell.owner === ""){
         if($scope.turn === 1){
           cell.owner = "X";
           cell.checker = "X";
-          $scope.playCounter++;
+          playCounter++;
           $scope.turn = 2;
         }
         else {
           cell.owner = "O";
           cell.checker = "O";
-          $scope.playCounter++;
+          playCounter++;
           $scope.turn = 1;
         }
       }
-      $scope.winChecker();
+      winChecker();
     }
     else {
-      $scope.playAgain();
+      playAgain();
     }
   }
 
-  $scope.winChecker = function() {
-    if($scope.playCounter >= 5){
-      $scope.rowChecker();
-      $scope.columnChecker();
-      $scope.diagChecker();
-      if($scope.playCounter === 9 && $scope.gameOver === false){
+  var winChecker = function() {
+    if(playCounter >= 5){
+      rowChecker();
+      columnChecker();
+      diagChecker();
+      if(playCounter === 9 && gameOver === false){
         $scope.scoreBoard.ties++;
-        $scope.gameOver = true;
+        gameOver = true;
       }
     }
   }
 
-  $scope.rowChecker = function() {
+  var rowChecker = function() {
     var width = Math.sqrt($scope.board.length);
     for(i = 0; i <= (width - 1) * width; i+=width){
       if($scope.board[i].checker === $scope.board[i + 1].checker && $scope.board[i].checker === $scope.board[i + 2].checker){
@@ -63,12 +63,12 @@ var tttApp = angular.module('TttApp', []);
         $scope.board[i + 1].winner = true;
         $scope.board[i + 2].winner = true;
         $scope.board[i].checker === "X" ? $scope.scoreBoard.xWins++ : $scope.scoreBoard.oWins++;
-        $scope.gameOver = true;
+        gameOver = true;
       }
     }
   }
 
-  $scope.columnChecker = function() {
+  var columnChecker = function() {
     var width = Math.sqrt($scope.board.length);
     for(i = 0; i <= width; i++){
       if($scope.board[i].checker === $scope.board[i + width].checker && $scope.board[i].checker === $scope.board[i + (width * 2)].checker){
@@ -76,34 +76,34 @@ var tttApp = angular.module('TttApp', []);
         $scope.board[i + width].winner = true;
         $scope.board[i + (width * 2)].winner = true;
         $scope.board[i].checker === "X" ? $scope.scoreBoard.xWins++ : $scope.scoreBoard.oWins++;
-        $scope.gameOver = true;
+        gameOver = true;
       }
     }
   }
 
-  $scope.diagChecker = function() {
+  var diagChecker = function() {
     var width = Math.sqrt($scope.board.length);
     if($scope.board[0].checker === $scope.board[width + 1].checker && $scope.board[0].checker === $scope.board[(width + 1) * 2].checker){
       $scope.board[0].winner = true;
       $scope.board[width + 1].winner = true;
       $scope.board[(width + 1) * 2].winner = true;
       $scope.board[0].checker === "X" ? $scope.scoreBoard.xWins++ : $scope.scoreBoard.oWins++;
-      $scope.gameOver = true;
+      gameOver = true;
     }
     else if($scope.board[width -1].checker === $scope.board[(width * 2) - 2].checker && $scope.board[width - 1].checker === $scope.board[(width * 3) - 3].checker){
       $scope.board[width -1].winner = true;
       $scope.board[(width * 2) - 2].winner = true;
       $scope.board[(width * 3) - 3].winner = true;
       $scope.board[width - 1].checker === "X" ? $scope.scoreBoard.xWins++ : $scope.scoreBoard.oWins++;
-      $scope.gameOver = true;
+      gameOver = true;
     }    
   }
 
-  $scope.playAgain = function(){
+  var playAgain = function(){
     $scope.board = [];
-    $scope.createSquares(3);
-    $scope.gameOver = false;
-    $scope.playCounter = 0;
+    createSquares(3);
+    gameOver = false;
+    playCounter = 0;
     $scope.turn === 1 ? $scope.turn = 1 : $scope.turn = 2;
   }
 
@@ -120,7 +120,7 @@ var tttApp = angular.module('TttApp', []);
   }
 
   var init = function(){
-    $scope.createSquares(3);
+    createSquares(3);
   }
 
   init();
