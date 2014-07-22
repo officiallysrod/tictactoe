@@ -6,7 +6,7 @@ var tttApp = angular.module('TttApp', []);
 
   $scope.createSquares = function(numWidth) {
     for(i = 0; i < numWidth * numWidth; i++){
-      $scope.board.push({owner: "", checker: new Date()});
+      $scope.board.push({owner: "", checker: new Date(), winner: null});
     }
   }
 
@@ -57,6 +57,9 @@ var tttApp = angular.module('TttApp', []);
     var width = Math.sqrt($scope.board.length);
     for(i = 0; i <= (width - 1) * width; i+=width){
       if($scope.board[i].checker === $scope.board[i + 1].checker && $scope.board[i].checker === $scope.board[i + 2].checker){
+        $scope.board[i].winner = true;
+        $scope.board[i + 1].winner = true;
+        $scope.board[i + 2].winner = true;
         $scope.board[i].checker === "X" ? $scope.scoreBoard.xWins++ : $scope.scoreBoard.oWins++;
         $scope.gameOver = true;
       }
@@ -89,16 +92,16 @@ var tttApp = angular.module('TttApp', []);
     $scope.board = [];
     $scope.createSquares(3);
     $scope.gameOver = false;
-    $scope.turn = 1;
     $scope.playCounter = 0;
+    $scope.turn === 1 ? $scope.turn = 1 : $scope.turn = 2;
   }
 
   $scope.defaultNameOne = function(){
-    if($scope.playerOne === null){return "Player 1";}
+    if($scope.playerOne === null){return "PLAYER 1";}
   }
 
   $scope.defaultNameTwo = function(){
-    if($scope.playerTwo === null){return "Player 2";}
+    if($scope.playerTwo === null){return "PLAYER 2";}
   }
 
   $scope.hideModal = function(){

@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 
-<html ng-app="TttApp">
+<html data-ng-app="TttApp">
     <head>
         <title>ttt #ftw!</title>
         <link rel="icon" type="image/png" href="favicon.png">
@@ -10,43 +10,43 @@
         <script type="text/javascript" src="js/angular.min.js"></script>
         <script type="text/javascript" src="js/main.js"></script>
     </head>
-    <body ng-controller="TTTController">
-        <div id="openModal" class="modalDialog" ng-class="{visible: showModal}">
+    <body data-ng-controller="TTTController">
+        <div id="openModal" class="modalDialog" data-ng-class="{visible: showModal}">
             <div>
                 <h2>Welcome to ttt | #ftw!</h2>
                 <p>Hi there! I didn't catch your names. Would you mind telling me?</p>
                 <form>
-                    <p>Player 1: <input class="inputname" type="text" placeholder="player one" ng-model="playerOne"></p>
-                    <p>Player 2: <input class="inputname" type="text" placeholder="player two" ng-model="playerTwo"></p>
+                    <p>Player 1: <input class="inputname" type="text" placeholder="player one" data-ng-model="playerOne"></p>
+                    <p>Player 2: <input class="inputname" type="text" placeholder="player two" data-ng-model="playerTwo"></p>
                     <input class="close" type="submit" value="Let's get started!" ng-click="hideModal()">
                 </form>
             </div>    
         </div>
-        <div class="wrapper" ng-class="{shrink: showModal}">
+        <div class="wrapper" data-ng-class="{shrink: showModal}">
             <header class="mainhead">
                 <h1>ttt | #ftw!</h1>
             </header>
             <div class="board">
-                <div class="row" ng-repeat="cell in board">
+                <div class="row" data-ng-repeat="cell in board">
                     <div class="cell" 
-                        ng-click="setChoice(cell)"
-                        ng-class="{hover: cell.owner == ''}">
-                        <p ng-class="{xselected: cell.owner == 'X', oselected: cell.owner == 'O'}">{{cell.owner}}</p>
+                        data-ng-click="setChoice(cell)"
+                        data-ng-class="{hover: cell.owner == ''}">
+                        <p data-ng-class="{cellfont: !cell.winner, winner: cell.winner, xselected: cell.owner == 'X', oselected: cell.owner == 'O'}">{{cell.owner}}</p>
                     </div>
                 </div>
             </div> 
             <div class="gameinfo">
                 <div class="scorebox">
-                    <h3 class="names">{{defaultNameOne()}}{{playerOne}}</h3>
-                    <h3 id="score1">{{scoreBoard.xWins}}</h3>
+                    <h3 class="names" data-ng-class="{playerturn: turn == 1}">{{defaultNameOne()}}{{playerOne | uppercase}}</h3>
+                    <h3 data-ng-class="{playerturn: turn == 1}" id="score1">{{scoreBoard.xWins}}</h3>
                 </div>
                 <div class="scorebox">
-                    <h3 class="names">Ties</h3>
+                    <h3 class="names">TIES</h3>
                     <h3 id="score2">{{scoreBoard.ties}}</h3>
                 </div>
                 <div class="scorebox">
-                    <h3 class="names">{{defaultNameTwo()}}{{playerTwo}}</h3>
-                    <h3 id="score3">{{scoreBoard.oWins}}</h3>
+                    <h3 class="names" data-ng-class="{playerturn: turn == 2}">{{defaultNameTwo()}}{{playerTwo | uppercase}}</h3>
+                    <h3 id="score3" data-ng-class="{playerturn: turn == 2}">{{scoreBoard.oWins}}</h3>
                 </div>
             </div>
        </div>
