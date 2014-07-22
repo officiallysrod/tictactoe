@@ -4,7 +4,6 @@ Modal Dialog Box
 
 .modalDialog {
     position: fixed;
-    font-family: "Open Sans", sans-serif;
     color: white;
     top: 0;
     right: 0;
@@ -68,12 +67,7 @@ Modal Dialog Box
     background: #D60000;
 }
 
-.shrink {
-/*    -webkit-filter: blur(3px) grayscale(75%);
-    -moz-filter: blur(3px) grayscale(50%);
-    -webkit-transform: scale(0);
-    -moz-transform: scale(0);
-    transform: scale(0);*/
+.hidemainpage {
     opacity: 0;
 }
 
@@ -82,8 +76,6 @@ General Styles
 ================================================*/
 
 body {
-/*    background-image: url("../images/fabric_of_squares_gray_@2X.png");
-*/    /*background-image: url("../images/congruent_pentagon.png");*/
     font-family: "Open Sans", sans-serif;
 }
 
