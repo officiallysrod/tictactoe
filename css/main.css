@@ -77,7 +77,7 @@ General Styles
 
 body {
     font-family: "Open Sans", sans-serif;
-    background-color: rgb(245, 245, 245);
+    background-color: #F5F5F5;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -119,8 +119,6 @@ Game Board
 .board {
     width: 388px;
     height: 388px;
-/*    background-color: #3A7282;*/
-    /*box-shadow: 7px 7px 15px 0px rgba(56,56,56,0.75);*/
     margin: 50px auto 25px auto;
     cursor: pointer;
     border-radius: 3px;
@@ -131,7 +129,9 @@ Game Board
     width: 123px;
     height: 123px;
     margin: 2px 2px;
-    background-color: rgb(245, 245, 245);
+    background-color: #F5F5F5;
+    background-size: cover;
+    background-repeat: no-repeat;
     display: inline-block;
     float: left;
     border: 1px solid #3A7282;
@@ -141,59 +141,25 @@ Game Board
     transition: background-color 0.4s ease;
 }
 
-/*.winbackground {
-    background-color: #3A7282;
-    background-image: url("../images/o_white_w_background.svg");
-    background-size: cover;
-    background-repeat: no-repeat;
-    border: 1px solid white;
-    width: 123px;
-    height: 123px;
-}*/
-
 .hover:hover {
     background-color: #3A7282;
 }
 
-/*.cellfont {
-    color: #3A7282;
-    text-align: left;
-    font-size: 152px;
-    font-weight: 300;
-}*/
-
 .xselected {
-/*    margin: -44px auto 0 20px;*/
     background-image: url("../images/x_color.svg");
-    background-size: cover;
-    background-repeat: no-repeat;
 }
 
 .xwinner {
     background-image: url("../images/x_white_w_background.svg");
-    background-size: cover;
-    background-repeat: no-repeat;
 }
 
 .oselected {
-    /*margin: -45px auto 0 4px;*/
     background-image: url("../images/o_color.svg");
-    background-size: cover;
-    background-repeat: no-repeat;
 }
 
 .owinner {
     background-image: url("../images/o_white_w_background.svg");
-    background-size: cover;
-    background-repeat: no-repeat;
 }
-
-/*.winner {
-    color: white;
-    text-align: left;
-    font-size: 152px;
-    font-weight: 300;  
-}*/
 
 /*================================================
 Score Info Section

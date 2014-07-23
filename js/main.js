@@ -7,7 +7,7 @@ var tttApp = angular.module('TttApp', ["firebase"]);
   //creates new objects and pushes them into the empty $scope.board array
   var createSquares = function(numWidth) {
     for(i = 0; i < numWidth * numWidth; i++){
-      $scope.board.push({owner: "", checker: new Date(), winner: null});
+      $scope.board.push({owner: i, winner: null});
     }
   }
 
@@ -25,16 +25,14 @@ var tttApp = angular.module('TttApp', ["firebase"]);
   $scope.setChoice = function(cell) {
     if(gameOver === false){
       sfx.play();
-      if(cell.owner === ""){
+      if(cell.owner != "X" && cell.owner != "O"){
         if($scope.turn === 1){
           cell.owner = "X";
-          cell.checker = "X";
           playCounter++;
           $scope.turn = 2;
         }
         else {
           cell.owner = "O";
-          cell.checker = "O";
           playCounter++;
           $scope.turn = 1;
         }
@@ -65,12 +63,10 @@ var tttApp = angular.module('TttApp', ["firebase"]);
   var rowChecker = function() {
     var width = Math.sqrt($scope.board.length);
     for(i = 0; i <= (width - 1) * width; i+=width){
-      if($scope.board[i].checker === $scope.board[i + 1].checker && 
-        $scope.board[i].checker === $scope.board[i + 2].checker){
-          $scope.board[i].winner = true;
-          $scope.board[i + 1].winner = true;
-          $scope.board[i + 2].winner = true;
-          $scope.board[i].checker === "X" ? $scope.scoreBoard.xWins++ : $scope.scoreBoard.oWins++;
+      if($scope.board[i].owner === $scope.board[i + 1].owner && 
+        $scope.board[i].owner === $scope.board[i + 2].owner){
+          $scope.board[i].winner = $scope.board[i + 1].winner = $scope.board[i + 2].winner = true;
+          $scope.board[i].owner === "X" ? $scope.scoreBoard.xWins++ : $scope.scoreBoard.oWins++;
           gameOver = true;
       }
     }
@@ -81,12 +77,10 @@ var tttApp = angular.module('TttApp', ["firebase"]);
   var columnChecker = function() {
     var width = Math.sqrt($scope.board.length);
     for(i = 0; i <= width; i++){
-      if($scope.board[i].checker === $scope.board[i + width].checker && 
-        $scope.board[i].checker === $scope.board[i + (width * 2)].checker){
-          $scope.board[i].winner = true;
-          $scope.board[i + width].winner = true;
-          $scope.board[i + (width * 2)].winner = true;
-          $scope.board[i].checker === "X" ? $scope.scoreBoard.xWins++ : $scope.scoreBoard.oWins++;
+      if($scope.board[i].owner === $scope.board[i + width].owner && 
+        $scope.board[i].owner === $scope.board[i + (width * 2)].owner){
+          $scope.board[i].winner = $scope.board[i + width].winner = $scope.board[i + (width * 2)].winner = true;
+          $scope.board[i].owner === "X" ? $scope.scoreBoard.xWins++ : $scope.scoreBoard.oWins++;
           gameOver = true;
       }
     }
@@ -96,20 +90,16 @@ var tttApp = angular.module('TttApp', ["firebase"]);
   //checks each column on the board for winning scenarios.
   var diagChecker = function() {
     var width = Math.sqrt($scope.board.length);
-    if($scope.board[0].checker === $scope.board[width + 1].checker && 
-      $scope.board[0].checker === $scope.board[(width + 1) * 2].checker){
-        $scope.board[0].winner = true;
-        $scope.board[width + 1].winner = true;
-        $scope.board[(width + 1) * 2].winner = true;
-        $scope.board[0].checker === "X" ? $scope.scoreBoard.xWins++ : $scope.scoreBoard.oWins++;
+    if($scope.board[0].owner === $scope.board[width + 1].owner && 
+      $scope.board[0].owner === $scope.board[(width + 1) * 2].owner){
+        $scope.board[0].winner = $scope.board[width + 1].winner = $scope.board[(width + 1) * 2].winner = true;
+        $scope.board[0].owner === "X" ? $scope.scoreBoard.xWins++ : $scope.scoreBoard.oWins++;
         gameOver = true;
     }
-    else if($scope.board[width -1].checker === $scope.board[(width * 2) - 2].checker && 
-      $scope.board[width - 1].checker === $scope.board[(width * 3) - 3].checker){
-        $scope.board[width -1].winner = true;
-        $scope.board[(width * 2) - 2].winner = true;
-        $scope.board[(width * 3) - 3].winner = true;
-        $scope.board[width - 1].checker === "X" ? $scope.scoreBoard.xWins++ : $scope.scoreBoard.oWins++;
+    else if($scope.board[width -1].owner === $scope.board[(width * 2) - 2].owner && 
+      $scope.board[width - 1].owner === $scope.board[(width * 3) - 3].owner){
+        $scope.board[width -1].winner = $scope.board[(width * 2) - 2].winner = $scope.board[(width * 3) - 3].winner = true;
+        $scope.board[width - 1].owner === "X" ? $scope.scoreBoard.xWins++ : $scope.scoreBoard.oWins++;
         gameOver = true;
     }    
   }
