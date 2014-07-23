@@ -7,7 +7,7 @@
         <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,800,600' rel='stylesheet' type='text/css'>
         <link rel="stylesheet" type="text/css" href="css/normalize.css">
         <link rel="stylesheet" type="text/css" href="css/main.css">
-        <script type="text/javascript" src="js/angular.min.js"></script>
+        <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.20/angular.min.js"></script>
         <script type="text/javascript" src="js/main.js"></script>
     </head>
     <body data-ng-controller="TTTController">
@@ -30,8 +30,7 @@
                 <div class="row" data-ng-repeat="cell in board">
                     <div class="cell" 
                         data-ng-click="setChoice(cell)"
-                        data-ng-class="{hover: cell.owner == '', winbackground: cell.winner}">
-                        <p data-ng-class="{cellfont: !cell.winner, winner: cell.winner, xselected: cell.owner == 'X', oselected: cell.owner == 'O'}">{{cell.owner}}</p>
+                        data-ng-class="{hover: cell.owner == '', xwinner: cell.winner, owinner: cell.winner, xselected: cell.owner == 'X' && cell.winner == null, oselected: cell.owner == 'O' && cell.winner == null}">
                     </div>
                 </div>
             </div> 

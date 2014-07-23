@@ -141,56 +141,58 @@ Game Board
     transition: background-color 0.4s ease;
 }
 
-.winbackground {
+/*.winbackground {
     background-color: #3A7282;
+    background-image: url("../images/o_white_w_background.svg");
+    background-size: cover;
+    background-repeat: no-repeat;
     border: 1px solid white;
     width: 123px;
     height: 123px;
-}
+}*/
 
 .hover:hover {
     background-color: #3A7282;
 }
 
-.cellfont {
+/*.cellfont {
     color: #3A7282;
     text-align: left;
     font-size: 152px;
     font-weight: 300;
-}
+}*/
 
 .xselected {
-    margin: -44px auto 0 20px;
-    /*background-image: url("../images/x_color.svg");
+/*    margin: -44px auto 0 20px;*/
+    background-image: url("../images/x_color.svg");
     background-size: cover;
-    background-repeat: no-repeat;*/
+    background-repeat: no-repeat;
+}
+
+.xwinner {
+    background-image: url("../images/x_white_w_background.svg");
+    background-size: cover;
+    background-repeat: no-repeat;
 }
 
 .oselected {
-    margin: -45px auto 0 4px;
-   /* background-image: url("../images/o_color.svg");
+    /*margin: -45px auto 0 4px;*/
+    background-image: url("../images/o_color.svg");
     background-size: cover;
-    background-repeat: no-repeat;*/
+    background-repeat: no-repeat;
 }
 
-.winner {
+.owinner {
+    background-image: url("../images/o_white_w_background.svg");
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+/*.winner {
     color: white;
     text-align: left;
     font-size: 152px;
-    font-weight: 400;  
-}
-
-/*.winnerx {
-    background-image: url("../images/x_white.svg");
-    background-color: #3A7282;
-    background-size: cover;
-    background-repeat: no-repeat;
-}*/
-
-/*.winnero {
-    background-image: url("../images/o_white.svg");
-    background-size: cover;
-    background-repeat: no-repeat;
+    font-weight: 300;  
 }*/
 
 /*================================================
