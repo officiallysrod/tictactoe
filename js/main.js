@@ -50,9 +50,9 @@ var tttApp = angular.module('TttApp', []);
   //checks the board for all winning scenarios. 
   var winChecker = function() {
     if(playCounter >= 5){
+      diagChecker();
       rowChecker();
       columnChecker();
-      diagChecker();
       if(playCounter === 9 && gameOver === false){
         $scope.scoreBoard.ties++;
         gameOver = true;
