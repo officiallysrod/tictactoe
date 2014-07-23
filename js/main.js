@@ -1,6 +1,6 @@
-var tttApp = angular.module('TttApp', []);
+var tttApp = angular.module('TttApp', ["firebase"]);
 
-  tttApp.controller('TTTController', function ($scope) {
+  tttApp.controller('TTTController', function ($scope, $firebase) {
   
   $scope.board = []
 
