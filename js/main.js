@@ -65,12 +65,13 @@ var tttApp = angular.module('TttApp', []);
   var rowChecker = function() {
     var width = Math.sqrt($scope.board.length);
     for(i = 0; i <= (width - 1) * width; i+=width){
-      if($scope.board[i].checker === $scope.board[i + 1].checker && $scope.board[i].checker === $scope.board[i + 2].checker){
-        $scope.board[i].winner = true;
-        $scope.board[i + 1].winner = true;
-        $scope.board[i + 2].winner = true;
-        $scope.board[i].checker === "X" ? $scope.scoreBoard.xWins++ : $scope.scoreBoard.oWins++;
-        gameOver = true;
+      if($scope.board[i].checker === $scope.board[i + 1].checker && 
+        $scope.board[i].checker === $scope.board[i + 2].checker){
+          $scope.board[i].winner = true;
+          $scope.board[i + 1].winner = true;
+          $scope.board[i + 2].winner = true;
+          $scope.board[i].checker === "X" ? $scope.scoreBoard.xWins++ : $scope.scoreBoard.oWins++;
+          gameOver = true;
       }
     }
   }
@@ -80,12 +81,13 @@ var tttApp = angular.module('TttApp', []);
   var columnChecker = function() {
     var width = Math.sqrt($scope.board.length);
     for(i = 0; i <= width; i++){
-      if($scope.board[i].checker === $scope.board[i + width].checker && $scope.board[i].checker === $scope.board[i + (width * 2)].checker){
-        $scope.board[i].winner = true;
-        $scope.board[i + width].winner = true;
-        $scope.board[i + (width * 2)].winner = true;
-        $scope.board[i].checker === "X" ? $scope.scoreBoard.xWins++ : $scope.scoreBoard.oWins++;
-        gameOver = true;
+      if($scope.board[i].checker === $scope.board[i + width].checker && 
+        $scope.board[i].checker === $scope.board[i + (width * 2)].checker){
+          $scope.board[i].winner = true;
+          $scope.board[i + width].winner = true;
+          $scope.board[i + (width * 2)].winner = true;
+          $scope.board[i].checker === "X" ? $scope.scoreBoard.xWins++ : $scope.scoreBoard.oWins++;
+          gameOver = true;
       }
     }
   }
@@ -94,19 +96,21 @@ var tttApp = angular.module('TttApp', []);
   //checks each column on the board for winning scenarios.
   var diagChecker = function() {
     var width = Math.sqrt($scope.board.length);
-    if($scope.board[0].checker === $scope.board[width + 1].checker && $scope.board[0].checker === $scope.board[(width + 1) * 2].checker){
-      $scope.board[0].winner = true;
-      $scope.board[width + 1].winner = true;
-      $scope.board[(width + 1) * 2].winner = true;
-      $scope.board[0].checker === "X" ? $scope.scoreBoard.xWins++ : $scope.scoreBoard.oWins++;
-      gameOver = true;
+    if($scope.board[0].checker === $scope.board[width + 1].checker && 
+      $scope.board[0].checker === $scope.board[(width + 1) * 2].checker){
+        $scope.board[0].winner = true;
+        $scope.board[width + 1].winner = true;
+        $scope.board[(width + 1) * 2].winner = true;
+        $scope.board[0].checker === "X" ? $scope.scoreBoard.xWins++ : $scope.scoreBoard.oWins++;
+        gameOver = true;
     }
-    else if($scope.board[width -1].checker === $scope.board[(width * 2) - 2].checker && $scope.board[width - 1].checker === $scope.board[(width * 3) - 3].checker){
-      $scope.board[width -1].winner = true;
-      $scope.board[(width * 2) - 2].winner = true;
-      $scope.board[(width * 3) - 3].winner = true;
-      $scope.board[width - 1].checker === "X" ? $scope.scoreBoard.xWins++ : $scope.scoreBoard.oWins++;
-      gameOver = true;
+    else if($scope.board[width -1].checker === $scope.board[(width * 2) - 2].checker && 
+      $scope.board[width - 1].checker === $scope.board[(width * 3) - 3].checker){
+        $scope.board[width -1].winner = true;
+        $scope.board[(width * 2) - 2].winner = true;
+        $scope.board[(width * 3) - 3].winner = true;
+        $scope.board[width - 1].checker === "X" ? $scope.scoreBoard.xWins++ : $scope.scoreBoard.oWins++;
+        gameOver = true;
     }    
   }
 
