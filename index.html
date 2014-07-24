@@ -8,11 +8,11 @@
         <link rel="stylesheet" type="text/css" href="css/normalize.css">
         <link rel="stylesheet" type="text/css" href="css/main.css">
         <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.20/angular.min.js"></script>
+        <script src="js/main.js"></script>
         <script src="https://cdn.firebase.com/js/client/1.0.17/firebase.js"></script>
         <script src="https://cdn.firebase.com/libs/angularfire/0.7.1/angularfire.js"></script>
-        <script src="js/main.js"></script>
     </head>
-    <body data-ng-controller="TTTController">
+    <body data-ng-controller="TTTController" data-ng-model="board">
         <div id="openModal" class="modalDialog" data-ng-class="{visible: showModal}">
             <div>
                 <h2>Welcome to ttt | #ftw!</h2>
@@ -35,8 +35,8 @@
                         data-ng-class="{hover: cell.owner != 'X' && cell.owner!= 'O', 
                                         xwinner: cell.winner == true && cell.owner == 'X', 
                                         owinner: cell.winner == true && cell.owner == 'O', 
-                                        xselected: cell.owner == 'X' && cell.winner == null, 
-                                        oselected: cell.owner == 'O' && cell.winner == null}">
+                                        xselected: cell.owner == 'X' && cell.winner == '', 
+                                        oselected: cell.owner == 'O' && cell.winner == ''}">
                     </div>
                 </div>
             </div> 
