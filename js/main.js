@@ -2,20 +2,23 @@ var tttApp = angular.module('TttApp', ["firebase"]);
 
   tttApp.controller('TTTController', function ($scope, $firebase) {
     
-    $scope.remoteBoard = $firebase(new Firebase('https://tictactoeftw.firebaseio.com/remoteBoard'));
-    $scope.remoteScoreBoard = $firebase(new Firebase('https://tictactoeftw.firebaseio.com/remoteScoreBoard'));
-    $scope.remoteTurn = $firebase(new Firebase('https://tictactoeftw.firebaseio.com/remoteTurn'));
-    $scope.remotePlayCounter = $firebase(new Firebase('https://tictactoeftw.firebaseio.com/remotePlayCounter'));
-    $scope.remoteWinChecker = $firebase(new Firebase('https://tictactoeftw.firebaseio.com/remoteWinChecker'));
-    $scope.remoteGameOver = $firebase(new Firebase('https://tictactoeftw.firebaseio.com/remoteGameOver'));
+    // var TttRef = new Firebase("https://tictactoeftw.firebaseio.com") ;
+    // $scope.remoteBoardContainer = $firebase(new Firebase('https://tictactoeftw.firebaseio.com/remoteBoardContainer'));
+    // $scope.remoteScoreBoard = $firebase(new Firebase('https://tictactoeftw.firebaseio.com/remoteScoreBoard'));
+    // $scope.remoteTurn = $firebase(new Firebase('https://tictactoeftw.firebaseio.com/remoteTurn'));
+    // $scope.remotePlayCounter = $firebase(new Firebase('https://tictactoeftw.firebaseio.com/remotePlayCounter'));
+    // $scope.remoteWinChecker = $firebase(new Firebase('https://tictactoeftw.firebaseio.com/remoteWinChecker'));
+    // $scope.remoteGameOver = $firebase(new Firebase('https://tictactoeftw.firebaseio.com/remoteGameOver'));
+    // $scope.remotePlayerOne = $firebase(new Firebase('https://tictactoeftw.firebaseio.com/remotePlayerOne'));
 
-    $scope.board = []
-
+    $scope.board = [];
+    
     //creates new objects and pushes them into the empty $scope.board array
     var createSquares = function(numWidth) {
       for(i = 0; i < numWidth * numWidth; i++){
         $scope.board.push({owner: i, winner: ""});
       }
+      // $scope.boardContainer = {boardArray: $scope.board};
     }
 
     //initializes variables
@@ -54,7 +57,6 @@ var tttApp = angular.module('TttApp', ["firebase"]);
     //is called by the setChoice function.
     //checks the board for all winning scenarios. 
     var winChecker = function() {
-      console.log("eat my shorts");
       if($scope.playCounter >= 5){
         diagChecker();
         rowChecker();
@@ -101,7 +103,6 @@ var tttApp = angular.module('TttApp', ["firebase"]);
     var diagChecker = function() {
       // var width = Math.sqrt($scope.board.length);
       var width = 3;
-      console.log($scope.board, width, $scope.board[0].owner);
       if($scope.board[0].owner === $scope.board[width + 1].owner && 
         $scope.board[0].owner === $scope.board[(width + 1) * 2].owner){
           $scope.board[0].winner = $scope.board[width + 1].winner = $scope.board[(width + 1) * 2].winner = true;
@@ -145,15 +146,17 @@ var tttApp = angular.module('TttApp', ["firebase"]);
 
     var init = function(){
       createSquares(3);
+      $scope.boardContainer = {boardArray: $scope.board};
     }
 
     init();
 
-    $scope.remoteBoard.$bind($scope, "board");
-    $scope.remoteScoreBoard.$bind($scope, "scoreBoard");
-    $scope.remoteTurn.$bind($scope, "turn");
-    $scope.remotePlayCounter.$bind($scope, "playCounter");
-    $scope.remoteWinChecker.$bind($scope, "winChecker");
-    $scope.remoteGameOver.$bind($scope, "gameOver");
+    // $scope.remoteBoardContainer.$bind($scope, "boardContainer");
+    // $scope.remoteScoreBoard.$bind($scope, "scoreBoard");
+    // $scope.remoteTurn.$bind($scope, "turn");
+    // $scope.remotePlayCounter.$bind($scope, "playCounter");
+    // $scope.remoteWinChecker.$bind($scope, "winChecker");
+    // $scope.remoteGameOver.$bind($scope, "gameOver");
+    // $scope.remotePlayerOne.$bind($scope, "playerOne");
 
 });

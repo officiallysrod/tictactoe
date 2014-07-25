@@ -6,13 +6,14 @@
         <link rel="icon" type="image/png" href="favicon.png">
         <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,800,600' rel='stylesheet' type='text/css'>
         <link rel="stylesheet" type="text/css" href="css/normalize.css">
+        <link rel="stylesheet" type="text/css" href="css/animate.css">
         <link rel="stylesheet" type="text/css" href="css/main.css">
         <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.20/angular.min.js"></script>
         <script src="js/main.js"></script>
         <script src="https://cdn.firebase.com/js/client/1.0.17/firebase.js"></script>
         <script src="https://cdn.firebase.com/libs/angularfire/0.7.1/angularfire.js"></script>
     </head>
-    <body data-ng-controller="TTTController" data-ng-model="board">
+    <body data-ng-controller="TTTController" data-ng-model="boardContainer.boardArray">
         <div id="openModal" class="modalDialog" data-ng-class="{visible: showModal}">
             <div>
                 <h2>Welcome to ttt | #ftw!</h2>
@@ -20,7 +21,7 @@
                 <form>
                     <p>Player 1: <input class="inputname" type="text" placeholder="player one" data-ng-model="playerOne"></p>
                     <p>Player 2: <input class="inputname" type="text" placeholder="player two" data-ng-model="playerTwo"></p>
-                    <input class="close" type="submit" value="Let's get started!" ng-click="hideModal()">
+                    <input class="close" type="submit" value="Let's get started!" data-ng-click="hideModal()">
                 </form>
             </div>    
         </div>
@@ -30,13 +31,14 @@
             </header>
             <div class="board">
                 <div class="row" data-ng-repeat="cell in board">
-                    <div class="cell" 
+                    <div class="cell animated" 
                         data-ng-click="setChoice(cell)"
                         data-ng-class="{hover: cell.owner != 'X' && cell.owner!= 'O', 
                                         xwinner: cell.winner == true && cell.owner == 'X', 
                                         owinner: cell.winner == true && cell.owner == 'O', 
                                         xselected: cell.owner == 'X' && cell.winner == '', 
-                                        oselected: cell.owner == 'O' && cell.winner == ''}">
+                                        oselected: cell.owner == 'O' && cell.winner == '', 
+                                        flip: cell.winner}">
                     </div>
                 </div>
             </div> 
