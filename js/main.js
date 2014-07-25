@@ -14,7 +14,7 @@ var tttApp = angular.module('TttApp', ["firebase"]);
     $scope.board = [];
     
     //creates new objects and pushes them into the empty $scope.board array
-    var createSquares = function(numWidth) {
+    $scope.createSquares = function(numWidth) {
       for(i = 0; i < numWidth * numWidth; i++){
         $scope.board.push({owner: i, winner: ""});
       }
@@ -122,7 +122,7 @@ var tttApp = angular.module('TttApp', ["firebase"]);
     //and alternates which player starts the next game.
     var playAgain = function(){
       $scope.board = [];
-      createSquares(3);
+      $scope.createSquares(3);
       $scope.gameOver = false;
       $scope.playCounter = 0;
       $scope.turn === 1 ? $scope.turn = 1 : $scope.turn = 2;
@@ -143,13 +143,6 @@ var tttApp = angular.module('TttApp', ["firebase"]);
     $scope.hideModal = function(){
       $scope.showModal = false;
     }
-
-    var init = function(){
-      createSquares(3);
-      $scope.boardContainer = {boardArray: $scope.board};
-    }
-
-    init();
 
     // $scope.remoteBoardContainer.$bind($scope, "boardContainer");
     // $scope.remoteScoreBoard.$bind($scope, "scoreBoard");
