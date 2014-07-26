@@ -28,11 +28,13 @@ Modal Dialog Box
 }
 
 #invalidTurn > div {
-    width: 225px;
-    margin-top: 235px;
-    padding-top: 10px;
+    width: 183px;
+    margin-top: 218px;
+    padding-top: 30px;
+    padding-bottom: 30px;
     background-color: #D60000;
     text-align: center;
+    border-radius: 10px;
 }
 
 #invalidTurn h3 {
@@ -55,8 +57,8 @@ Modal Dialog Box
 }
 
 .inputname {
-    margin: 5px 0 0 5px;
-    padding-left: 7px;
+    margin: 5px 0 5px 5px;
+    padding: 5px 5px 5px 7px;
     color: black;
     font-weight: 400;
 }
@@ -91,6 +93,16 @@ Modal Dialog Box
 
 .hidemainpage {
     opacity: 0;
+}
+
+#devicepref {
+    font-size: 13px;
+    cursor: pointer;
+}
+
+#devicepref:hover {
+    color: red;
+    text-decoration: underline;
 }
 
 /*================================================
