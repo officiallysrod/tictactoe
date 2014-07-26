@@ -4,7 +4,9 @@ var TTTApp = angular.module('TTTApp', ["firebase"]);
 
     $scope.board = [];
 
-    // creates new objects and pushes them into the empty $scope.board array
+    //creates new objects, pushes them into the empty $scope.board array, 
+    //and subsequently pushes that array into an object.
+    //note that it is necessary to push the array into an object to make the game play nice w/ Firebase.
     $scope.createSquares = function(numWidth) {
       for(i = 0; i < numWidth * numWidth; i++){
         $scope.board.push({owner: i, winner: ""});
@@ -13,12 +15,23 @@ var TTTApp = angular.module('TTTApp', ["firebase"]);
         $scope.playCounter = 0;
     }
 
+    //is called by ng-click on the "Let's get started" button that appears on page load
+    //switches the $scope.showModal variable to false and runs the createSquares function to build gameboard.
+    $scope.startGame = function(){
+      if($scope.userName != null) {
+        $scope.showModal = false;
+        $scope.createSquares(3);
+        setName();
+      }
+    }
+
     //initializes variables
     $scope.showModal = true;
     $scope.scoreBoard = {xWins: 0, oWins: 0, ties: 0};
     $scope.turn = 1;
-    $scope.playerOne = null;
-    $scope.playerTwo = null;
+    $scope.userName = null;
+    $scope.playerOne = "";
+    $scope.playerTwo = "";
     $scope.gameOver = false;
     // $scope.playCounter = 0;
     var sfx = new Audio('pop.mp3');
@@ -121,20 +134,25 @@ var TTTApp = angular.module('TTTApp', ["firebase"]);
       $scope.turn === 1 ? $scope.turn = 1 : $scope.turn = 2;
     }
 
+    var setName = function(){
+      if($scope.playerOne != "" && $scope.playerTwo != ""){
+        $scope.playerOne = $scope.userName;
+        $scope.playerTwo = "";
+      }
+      else {
+        $scope.playerTwo = $scope.userName;
+      }
+      // $scope.playerOne === "" ? $scope.playerOne = $scope.userName : $scope.playerTwo = $scope.userName;
+    }
+
     //sets a default value for $scope.playerOne if user doesn't enter a value
-    $scope.defaultNameOne = function(){
-      if($scope.playerOne === null){return "PLAYER 1";}
-    }
+    // $scope.defaultNameOne = function(){
+    //   if($scope.playerOne === ""){return "PLAYER 1";}
+    // }
 
-    //sets a default value for $scope.playerTwo if user doesn't enter a value
+    //sets a default value for $scope.playerTwo until user enters a value
     $scope.defaultNameTwo = function(){
-      if($scope.playerTwo === null){return "PLAYER 2";}
-    }
-
-    //is called by ng-click on the "Let's get started" button that appears on page load
-    //switches the $scope.showModal variable to false.
-    $scope.hideModal = function(){
-      $scope.showModal = false;
+      if($scope.playerTwo === ""){return "PLAYER 2";}
     }
 
     var TTTRef = new Firebase("https://tic-tac-toe-v2.firebaseio.com/") ;
@@ -142,16 +160,14 @@ var TTTApp = angular.module('TTTApp', ["firebase"]);
     $scope.remoteScoreBoard = $firebase(new Firebase('https://tic-tac-toe-v2.firebaseio.com//remoteScoreBoard'));
     $scope.remoteTurn = $firebase(new Firebase('https://tic-tac-toe-v2.firebaseio.com//remoteTurn'));
     $scope.remotePlayCounter = $firebase(new Firebase('https://tic-tac-toe-v2.firebaseio.com//remotePlayCounter'));
-    // $scope.remoteWinChecker = $firebase(new Firebase('https://tic-tac-toe-v2.firebaseio.com//remoteWinChecker'));
-    // $scope.remoteGameOver = $firebase(new Firebase('https://tic-tac-toe-v2.firebaseio.com//remoteGameOver'));
-    // $scope.remotePlayerOne = $firebase(new Firebase('https://tic-tac-toe-v2.firebaseio.com//remotePlayerOne'));
+    $scope.remotePlayerOne = $firebase(new Firebase('https://tic-tac-toe-v2.firebaseio.com//remotePlayerOne'));
+    $scope.remotePlayerTwo = $firebase(new Firebase('https://tic-tac-toe-v2.firebaseio.com//remotePlayerTwo'));
 
     $scope.remoteBoardContainer.$bind($scope, "boardContainer");
     $scope.remoteScoreBoard.$bind($scope, "scoreBoard");
     $scope.remoteTurn.$bind($scope, "turn");
     $scope.remotePlayCounter.$bind($scope, "playCounter");
-    // $scope.remoteWinChecker.$bind($scope, "winChecker");
-    // $scope.remoteGameOver.$bind($scope, "boardContainer.gameOver");
-    // $scope.remotePlayerOne.$bind($scope, "playerOne");
+    $scope.remotePlayerOne.$bind($scope, "playerOne");
+    $scope.remotePlayerTwo.$bind($scope, "playerTwo");
 
 });

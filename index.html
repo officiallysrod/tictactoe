@@ -14,7 +14,8 @@
         <script src="https://cdn.firebase.com/libs/angularfire/0.7.1/angularfire.js"></script>
     </head>
     <body data-ng-controller="TTTController" data-ng-model="boardContainer.boardArray">
-        <div id="openModal" class="modalDialog" data-ng-class="{visible: showModal}">
+        
+        <!-- <div id="openModal" class="modalDialog" data-ng-class="{visible: showModal}">
             <div>
                 <h2>Welcome to ttt | #ftw!</h2>
                 <p>Hi there! I didn't catch your names. Would you mind telling me?</p>
@@ -22,6 +23,17 @@
                     <p>Player 1: <input class="inputname" type="text" placeholder="player one" data-ng-model="playerOne"></p>
                     <p>Player 2: <input class="inputname" type="text" placeholder="player two" data-ng-model="playerTwo"></p>
                     <input class="close" type="submit" value="Let's get started!" data-ng-click="hideModal(); createSquares(3)">
+                </form>
+            </div>    
+        </div> -->
+        <div id="openModal" class="modalDialog" data-ng-class="{visible: showModal}">
+            <div>
+                <h2>Welcome to ttt | #ftw!</h2>
+                <p>Hi there! I didn't catch your name. Go ahead and enter it now.</p>
+                <form>
+                    <input class="inputname" type="text" placeholder="your name" data-ng-model="userName" required>
+                    <br>
+                    <input class="close" type="submit" value="Let's get started!" data-ng-click="startGame()">
                 </form>
             </div>    
         </div>
@@ -44,7 +56,7 @@
             </div> 
             <div class="gameinfo">
                 <div class="scorebox">
-                    <h3 class="names" data-ng-class="{playerturn: turn == 1}">{{defaultNameOne()}}{{playerOne | uppercase}}</h3>
+                    <h3 class="names" data-ng-class="{playerturn: turn == 1}">{{playerOne | uppercase}}</h3>
                     <h3 data-ng-class="{playerturn: turn == 1}" id="score1">{{scoreBoard.xWins}}</h3>
                 </div>
                 <div class="scorebox">
