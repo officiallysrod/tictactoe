@@ -27,6 +27,18 @@ Modal Dialog Box
     box-shadow: 7px 7px 15px 0px rgba(56,56,56,0.75);
 }
 
+#invalidTurn > div {
+    width: 225px;
+    margin-top: 229px;
+    padding-top: 10px;
+    background-color: #D60000;
+    text-align: center;
+}
+
+#invalidTurn h3 {
+    font-weight: 300;
+}
+
 .modalDialog h2 {
     font-size: 24px;
     padding-bottom: 3px;
@@ -63,8 +75,18 @@ Modal Dialog Box
     padding: 10px;
 }
 
+.close2 {
+    background-color: #D60000;
+    border: 2px inset #FFFFFF;
+}
+
 .close:hover { 
     background: #D60000;
+}
+
+.close2:hover {
+    background: #FFFFFF;
+    color: #D60000;
 }
 
 .hidemainpage {

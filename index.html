@@ -37,6 +37,12 @@
                 </form>
             </div>    
         </div>
+        <div id="invalidTurn" class="modalDialog" data-ng-class="{visible: invalidTurn}">
+            <div>
+                <h3>Nice try, you rascal.<br>It's not your turn!</h3>
+                <input class="close close2" type="submit" value="You got me!  I'll wait." data-ng-click="hideInvalidTurn()">
+            </div>    
+        </div>
         <div class="wrapper" data-ng-class="{hidemainpage: showModal}">
             <header class="mainhead">
                 <h1>ttt | #ftw!</h1>

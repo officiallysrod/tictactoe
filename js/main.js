@@ -30,8 +30,10 @@ var TTTApp = angular.module('TTTApp', ["firebase"]);
     $scope.scoreBoard = {xWins: 0, oWins: 0, ties: 0};
     $scope.turn = 1;
     $scope.userName = null;
-    $scope.playerOne = "";
+    $scope.playerOne = "Player One";
     $scope.playerTwo = "";
+    var playerNum;
+    $scope.invalidTurn = false;
     $scope.gameOver = false;
     // $scope.playCounter = 0;
     var sfx = new Audio('pop.mp3');
@@ -40,16 +42,19 @@ var TTTApp = angular.module('TTTApp', ["firebase"]);
     $scope.setChoice = function(cell) {
       if($scope.boardContainer.gameOver === false){
         sfx.play();
-        if(cell.owner != "X" && cell.owner != "O"){
-          if($scope.turn === 1){
-            cell.owner = "X";
-            $scope.playCounter++;
-            $scope.turn = 2;
-          }
-          else {
-            cell.owner = "O";
-            $scope.playCounter++;
-            $scope.turn = 1;
+        if(playerNum != $scope.turn) {$scope.invalidTurn = true;}
+        else {
+          if(cell.owner != "X" && cell.owner != "O"){
+            if($scope.turn === 1){
+              cell.owner = "X";
+              $scope.playCounter++;
+              $scope.turn = 2;
+            }
+            else {
+              cell.owner = "O";
+              $scope.playCounter++;
+              $scope.turn = 1;
+            }
           }
         }
         winChecker();
@@ -138,9 +143,11 @@ var TTTApp = angular.module('TTTApp', ["firebase"]);
       if($scope.playerOne != "" && $scope.playerTwo != ""){
         $scope.playerOne = $scope.userName;
         $scope.playerTwo = "";
+        playerNum = 1;
       }
       else {
         $scope.playerTwo = $scope.userName;
+        playerNum = 2;
       }
       // $scope.playerOne === "" ? $scope.playerOne = $scope.userName : $scope.playerTwo = $scope.userName;
     }
@@ -155,6 +162,12 @@ var TTTApp = angular.module('TTTApp', ["firebase"]);
       if($scope.playerTwo === ""){return "PLAYER 2";}
     }
 
+    //hides the invalidTurn dialog
+    $scope.hideInvalidTurn = function(){
+      $scope.invalidTurn = false;
+    }
+
+    //all the stuff to make Firebase work
     var TTTRef = new Firebase("https://tic-tac-toe-v2.firebaseio.com/") ;
     $scope.remoteBoardContainer = $firebase(new Firebase('https://tic-tac-toe-v2.firebaseio.com//remoteBoardContainer'));
     $scope.remoteScoreBoard = $firebase(new Firebase('https://tic-tac-toe-v2.firebaseio.com//remoteScoreBoard'));
