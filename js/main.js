@@ -35,7 +35,6 @@ var TTTApp = angular.module('TTTApp', ["firebase"]);
     var playerNum;
     $scope.invalidTurn = false;
     $scope.gameOver = false;
-    // $scope.playCounter = 0;
     var sfx = new Audio('pop.mp3');
 
     //is called by ng-click on any cell on the board
@@ -149,13 +148,7 @@ var TTTApp = angular.module('TTTApp', ["firebase"]);
         $scope.playerTwo = $scope.userName;
         playerNum = 2;
       }
-      // $scope.playerOne === "" ? $scope.playerOne = $scope.userName : $scope.playerTwo = $scope.userName;
     }
-
-    //sets a default value for $scope.playerOne if user doesn't enter a value
-    // $scope.defaultNameOne = function(){
-    //   if($scope.playerOne === ""){return "PLAYER 1";}
-    // }
 
     //sets a default value for $scope.playerTwo until user enters a value
     $scope.defaultNameTwo = function(){
