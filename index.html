@@ -30,7 +30,7 @@
                 <h1>ttt | #ftw!</h1>
             </header>
             <div class="board">
-                <div class="row" data-ng-repeat="cell in board">
+                <div class="row" data-ng-repeat="cell in boardContainer.boardArray">
                     <div class="cell animated" 
                         data-ng-click="setChoice(cell)"
                         data-ng-class="{hover: cell.owner != 'X' && cell.owner!= 'O', 

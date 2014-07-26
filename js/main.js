@@ -3,7 +3,7 @@ var TTTApp = angular.module('TTTApp', ["firebase"]);
   TTTApp.controller('TTTController', function ($scope, $firebase) {
     
     var TTTRef = new Firebase("https://tic-tac-toe-v2.firebaseio.com/") ;
-    $scope.remoteBoard = $firebase(new Firebase('https://tic-tac-toe-v2.firebaseio.com//remoteBoard'));
+    $scope.remoteBoardContainer = $firebase(new Firebase('https://tic-tac-toe-v2.firebaseio.com//remoteBoardContainer'));
     $scope.remoteScoreBoard = $firebase(new Firebase('https://tic-tac-toe-v2.firebaseio.com//remoteScoreBoard'));
     $scope.remoteTurn = $firebase(new Firebase('https://tic-tac-toe-v2.firebaseio.com//remoteTurn'));
     $scope.remotePlayCounter = $firebase(new Firebase('https://tic-tac-toe-v2.firebaseio.com//remotePlayCounter'));
@@ -13,11 +13,14 @@ var TTTApp = angular.module('TTTApp', ["firebase"]);
 
     $scope.board = [];
 
+
+
     // creates new objects and pushes them into the empty $scope.board array
     $scope.createSquares = function(numWidth) {
       for(i = 0; i < numWidth * numWidth; i++){
         $scope.board.push({owner: i, winner: ""});
       }
+        $scope.boardContainer = {boardArray: $scope.board, gameOver: $scope.gameOver};
     }
 
     //initializes variables
@@ -122,6 +125,7 @@ var TTTApp = angular.module('TTTApp', ["firebase"]);
     var playAgain = function(){
       $scope.board = [];
       $scope.createSquares(3);
+      $scope.boardContainer.gameOver = false;
       $scope.gameOver = false;
       $scope.playCounter = 0;
       $scope.turn === 1 ? $scope.turn = 1 : $scope.turn = 2;
@@ -143,12 +147,12 @@ var TTTApp = angular.module('TTTApp', ["firebase"]);
       $scope.showModal = false;
     }
 
-    $scope.remoteBoard.$bind($scope, "board");
+    $scope.remoteBoardContainer.$bind($scope, "boardContainer");
     $scope.remoteScoreBoard.$bind($scope, "scoreBoard");
     $scope.remoteTurn.$bind($scope, "turn");
     $scope.remotePlayCounter.$bind($scope, "playCounter");
     $scope.remoteWinChecker.$bind($scope, "winChecker");
-    $scope.remoteGameOver.$bind($scope, "gameOver");
+    // $scope.remoteGameOver.$bind($scope, "boardContainer.gameOver");
     // $scope.remotePlayerOne.$bind($scope, "playerOne");
 
 });
