@@ -213,3 +213,13 @@ Score Info Section
 #score1, #score2, #score3 {
     font-weight: 300;
 }
+
+.yourturn {
+    margin: 85px auto 0 auto;
+    text-align: center;
+    color: #D60000;
+}
+
+.yourturn h1 {
+    font-weight: 300;
+}

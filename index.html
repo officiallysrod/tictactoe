@@ -74,6 +74,9 @@
                     <h3 id="score3" data-ng-class="{playerturn: turn == 2}">{{scoreBoard.oWins}}</h3>
                 </div>
             </div>
+            <div class="yourturn animated pulse" data-ng-show="playerNum == turn && boardContainer.gameOver == false">
+                <h1>it's your turn!</h1>
+            </div>
        </div>
     </body>
 </html>

@@ -32,7 +32,7 @@ var TTTApp = angular.module('TTTApp', ["firebase"]);
     $scope.userName = null;
     $scope.playerOne = "Player One";
     $scope.playerTwo = "";
-    var playerNum;
+    $scope.playerNum;
     $scope.invalidTurn = false;
     $scope.gameOver = false;
     var sfx = new Audio('pop.mp3');
@@ -41,7 +41,7 @@ var TTTApp = angular.module('TTTApp', ["firebase"]);
     $scope.setChoice = function(cell) {
       if($scope.boardContainer.gameOver === false){
         sfx.play();
-        if(playerNum != $scope.turn) {$scope.invalidTurn = true;}
+        if($scope.playerNum != $scope.turn) {$scope.invalidTurn = true;}
         else {
           if(cell.owner != "X" && cell.owner != "O"){
             if($scope.turn === 1){
@@ -142,11 +142,11 @@ var TTTApp = angular.module('TTTApp', ["firebase"]);
       if($scope.playerOne != "" && $scope.playerTwo != ""){
         $scope.playerOne = $scope.userName;
         $scope.playerTwo = "";
-        playerNum = 1;
+        $scope.playerNum = 1;
       }
       else {
         $scope.playerTwo = $scope.userName;
-        playerNum = 2;
+        $scope.playerNum = 2;
       }
     }
 
