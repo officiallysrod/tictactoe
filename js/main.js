@@ -158,7 +158,7 @@ var TTTApp = angular.module('TTTApp', ["firebase"]);
 
     //sets a default value for $scope.playerTwo until user enters a value
     $scope.defaultNameTwo = function(){
-      if($scope.playerTwo === ""){return "PLAYER 2";}
+      if($scope.playerTwo === ""){return "WAITING...";}
     }
 
     //hides the invalidTurn dialog
