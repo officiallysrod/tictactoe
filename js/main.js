@@ -111,7 +111,7 @@ var TTTApp = angular.module('TTTApp', ["firebase"]);
     }
 
     //is called by the winChecker function.
-    //checks each column on the board for winning scenarios.
+    //checks each diagonal on the board for winning scenarios.
     var diagChecker = function() {
       var width = 3;
       if($scope.boardContainer.boardArray[0].owner === $scope.boardContainer.boardArray[width + 1].owner && 
@@ -139,11 +139,10 @@ var TTTApp = angular.module('TTTApp', ["firebase"]);
       $scope.boardContainer.gameOver = false;
       $scope.winner = "";
       $scope.tie = false;
-      // $scope.gameOver = false;
-      // $scope.playCounter = 0;
       $scope.turn === 1 ? $scope.turn = 1 : $scope.turn = 2;
     }
 
+    //assigns user-entered name to playerOne or playerTwo variable and assigns playerNum variable
     var setName = function(){
       if($scope.playerOne === "" || ($scope.playerOne != "" && $scope.playerTwo != "")){
         $scope.playerOne = $scope.userName;
@@ -161,7 +160,7 @@ var TTTApp = angular.module('TTTApp', ["firebase"]);
       if($scope.playerTwo === ""){return "WAITING...";}
     }
 
-    //hides the invalidTurn dialog
+    //hides the invalidTurn dialog on user's click
     $scope.hideInvalidTurn = function(){
       $scope.invalidTurn = false;
     }
